@@ -69,4 +69,11 @@ import java.util.List;
         this.nomeFantasia = nomeFantasia;
     }
 
-}// fim classe
+        public List<String> getRestaurantesImportantes() {
+            return restaurantesImportantes;
+        }
+
+        public void setRestaurantesImportantes(List<String> restaurantesImportantes) {
+            this.restaurantesImportantes = restaurantesImportantes;
+        }
+    }// fim classe

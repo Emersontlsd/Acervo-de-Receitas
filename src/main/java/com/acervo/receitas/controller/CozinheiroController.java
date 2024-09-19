@@ -1,5 +1,6 @@
 package com.acervo.receitas.controller;
 
+import com.acervo.receitas.dto.CozinheiroDTO;
 import com.acervo.receitas.model.Cozinheiro;
 import com.acervo.receitas.service.CozinheiroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,27 +19,29 @@ public class CozinheiroController {
     private CozinheiroService cozinheiroService;
 
     @PostMapping
-    public ResponseEntity<Cozinheiro> criarCozinheiro (@RequestBody Cozinheiro cozinheiro) {
-        Cozinheiro novoCozinheiro = cozinheiroService.salvarCozinheiro(cozinheiro);
-        return new ResponseEntity<>(novoCozinheiro, HttpStatus.CREATED);
+    public ResponseEntity<CozinheiroDTO> criarCozinheiro(@RequestBody CozinheiroDTO cozinheiroDTO) {
+        CozinheiroDTO novoCozinheiroDTO = cozinheiroService.salvarCozinheiro(cozinheiroDTO);
+        return new ResponseEntity<>(novoCozinheiroDTO, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Cozinheiro>> listarCozinheiros() {
+    public ResponseEntity<List<CozinheiroDTO>> listarCozinheiros() {
         return ResponseEntity.ok(cozinheiroService.listarCozinheiros());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cozinheiro> buscarCozinheiro(@PathVariable Long id) {
-        Optional<Cozinheiro> cozinheiro = cozinheiroService.buscarPorId(id);
-        return cozinheiro.map(ResponseEntity::ok)
+    public ResponseEntity<CozinheiroDTO> buscarCozinheiro(@PathVariable Long id) {
+        return cozinheiroService.buscarPorId(id)
+                .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarCozinheiro (@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarCozinheiro(@PathVariable Long id) {
         cozinheiroService.deletarCozinheiro(id);
         return ResponseEntity.noContent().build();
     }
+}
+
 
 }// fim CozinheiroController

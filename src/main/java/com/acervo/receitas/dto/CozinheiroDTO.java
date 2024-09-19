@@ -7,6 +7,7 @@ public class CozinheiroDTO {
     private String nome;
     private String dataIngresso;
     private String nomeFantasia;
+    private double salario;
     private List<String> restaurantesImportantes;
 
     public Long getId() {
@@ -43,6 +44,14 @@ public class CozinheiroDTO {
 
     public List<String> getRestaurantesImportantes() {
         return restaurantesImportantes;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
 
     public void setRestaurantesImportantes(List<String> restaurantesImportantes) {

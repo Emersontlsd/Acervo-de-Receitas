@@ -1,10 +1,13 @@
 package com.acervo.receitas.model;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 
-    @Embeddable
+    @Entity
     public class Ingrediente {
 
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
         private String nome;
         private String descricao;
         private int quantidade;
@@ -40,5 +43,13 @@ import jakarta.persistence.Embeddable;
 
         public void setMedida(String medida) {
             this.medida = medida;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
         }
     }
